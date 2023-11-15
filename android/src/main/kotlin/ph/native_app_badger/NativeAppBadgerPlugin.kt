@@ -22,12 +22,10 @@ class NativeAppBadgerPlugin : FlutterPlugin, MethodCallHandler {
 
     }
 
-    override fun onMethodCall(call: MethodCall, result: Result) {
+    override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         if (call.method.equals("updateBadgeCount")) {
-            ShortcutBadger.applyCount(
-                context,
-                Integer.valueOf(call.argument("count").toString())
-            )
+            val count = call.argument<Int>("count") ?: 0
+                ShortcutBadger.applyCount(context, count)
             result.success(null)
         } else if (call.method.equals("removeBadge")) {
             ShortcutBadger.removeCount(context)

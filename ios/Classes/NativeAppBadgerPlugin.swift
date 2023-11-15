@@ -19,7 +19,7 @@ public class NativeAppBadgerPlugin: NSObject, FlutterPlugin {
       case "updateBadgeCount":
         guard let args = call.arguments as? [String : Any] else { return }
         let count = args["count"] as! Int
-        updateBadgeCount(count)
+        updateBadgeCount(count: count)
         result(nil)
       case "removeBadge":
         removeBadge()
